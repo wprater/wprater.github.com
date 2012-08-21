@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[A Creative Technologist]]></title>
-  <link href="http://wprater.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Programming | A Creative Technologist]]></title>
+  <link href="http://wprater.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://wprater.github.com/"/>
   <updated>2012-08-21T12:48:50+02:00</updated>
   <id>http://wprater.github.com/</id>
@@ -18,24 +18,24 @@
     <link href="http://wprater.github.com/blog/2012/07/24/rubymotion-linting-and-highlighting-with-sublime-text/"/>
     <updated>2012-07-24T12:44:00+02:00</updated>
     <id>http://wprater.github.com/blog/2012/07/24/rubymotion-linting-and-highlighting-with-sublime-text</id>
-    <content type="html"><![CDATA[<p>Looking to build a new iOS project with <a href="http://www.rubymotion.com">RubyMotion</a> and you&#8217;re a fan of <a href="http://www.sublimetext.com">Sublime Text</a> too?  Here are a few tips to get syntax highlighting, linting, and snippets running smoothly on your machine. <!--more-->  There is a great RubyMotion <a href="https://github.com/haraken3/SublimeRubyMotionBuilder">bundle</a> by <a href="https://twitter.com/haraken3">Kentaro Hara</a> already available, which you can use to get Cocoa SDK syntax highlighting, code completion, and some lovely snippets!  The syntax highlighting in this bundle is different than the normal Ruby bundle, which I find odd.</p>
+    <content type="html"><![CDATA[<p>Looking to build a new iOS project with <a href="http://www.rubymotion.com">RubyMotion</a> and you're a fan of <a href="http://www.sublimetext.com">Sublime Text</a> too?  Here are a few tips to get syntax highlighting, linting, and snippets running smoothly on your machine. <!--more-->  There is a great RubyMotion <a href="https://github.com/haraken3/SublimeRubyMotionBuilder">bundle</a> by <a href="https://twitter.com/haraken3">Kentaro Hara</a> already available, which you can use to get Cocoa SDK syntax highlighting, code completion, and some lovely snippets!  The syntax highlighting in this bundle is different than the normal Ruby bundle, which I find odd.</p>
 
 <p><span class='pullquote-right' data-pullquote='The syntax used to define Objective-C selectors was added to RubyMotion and is not part of the Ruby standard.'>
-I&#8217;m a fan of real time linting and since the usual linting provided by <code>ruby -wc</code> won&#8217;t work here because of the extensions to the Ruby language (Ruby 2.0 should have named parameter support) <a href="http://www.hipbyte.com">Laurent Sansonetti</a> has made. The syntax used to define Objective-C selectors was added to RubyMotion and is not part of the Ruby standard. You&#8217;ll need to link the linter output to the custom ruby executable that&#8217;s available as part of the RubyMotion build.
+I'm a fan of real time linting and since the usual linting provided by <code>ruby -wc</code> won't work here because of the extensions to the Ruby language (Ruby 2.0 should have named parameter support) <a href="http://www.hipbyte.com">Laurent Sansonetti</a> has made. The syntax used to define Objective-C selectors was added to RubyMotion and is not part of the Ruby standard. You'll need to link the linter output to the custom ruby executable that's available as part of the RubyMotion build.
 </span></p>
 
-<p>Luckily, if you use the <a href="https://github.com/SublimeLinter/SublimeLinter">SublimeLinter</a> bundle for your linting joy in Sublime Text, you&#8217;re in luck.  The authors have made it simple to write new linter extensions and this is a perfect use-case.</p>
+<p>Luckily, if you use the <a href="https://github.com/SublimeLinter/SublimeLinter">SublimeLinter</a> bundle for your linting joy in Sublime Text, you're in luck.  The authors have made it simple to write new linter extensions and this is a perfect use-case.</p>
 
 <h3>Create the RubyMotion linter language for Sublime Text and Abacus</h3>
 
 <p>You need to create a new linting module that can be used in the <em>executable_map</em> and <em>syntax_map</em> options in SublimeLinter.  This module will effectively be a copy of the ruby module, with default config options set.</p>
 
 <p><img class="right" src="http://f.cl.ly/items/2R1z0s0u1d3L053O1x16/Image%202012.08.21%2011:05:40%20AM.png">
-Create a new file named <code>ruby_motion.py</code> in your SublimeLinter modules directory.  The filename, excluding the extension, is the module name which is used in the <em>executable_map</em> and <em>syntax_map</em> options one can override in their preferences.  You can find the modules directory in the Sublime Text packages directory on your machine.  Find this directory by using the Browse Packages&#8230; menu option and browse to <code>SublimeLinter/sublimelinter/modules</code> directory.</p>
+Create a new file named <code>ruby_motion.py</code> in your SublimeLinter modules directory.  The filename, excluding the extension, is the module name which is used in the <em>executable_map</em> and <em>syntax_map</em> options one can override in their preferences.  You can find the modules directory in the Sublime Text packages directory on your machine.  Find this directory by using the Browse Packages... menu option and browse to <code>SublimeLinter/sublimelinter/modules</code> directory.</p>
 
 <p>Below is the file to create that will create some defaults for the <code>ruby_motion</code> linting module, which you can change per project or through user settings if need be.</p>
 
-<div><script src='https://gist.github.com/3413799.js?file=ruby_motion.py'></script>
+<p><div><script src='https://gist.github.com/3413799.js?file=ruby_motion.py'></script>
 <noscript><pre><code>from ruby import Linter
 
 CONFIG = {
@@ -44,7 +44,7 @@ CONFIG = {
     'lint_args': '-wc'
 }
 </code></pre></noscript></div>
-
+</p>
 
 <p>The <code>CONFIG</code> dictionary sets up the defaults for your new <code>ruby_motion</code> module so that the language is <em>RubyMotion</em> and the executable path is in <em>/Library/RubyMotion/bin/ruby</em> which should be perfect for a default install of RubyMotion and the RubyMotionBuilder bundle.  If you need to change these, you can do so in your user preferences for the SublimeLinter bundle and edit the <em>executable_map</em> and <em>syntax_map</em> options.</p>
 
