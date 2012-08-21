@@ -1,0 +1,36 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+@media only screen and (min-width: 992px) {
+  body { font-size: 1.15em; }
+  h1, #content article h1.entry-title { font-size: 1.8em; line-height: 1.2em; }
+}
+
+body > header {
+    padding: 1em;
+}
+
+body > header h1 {
+  font-size: 1.3em;
+  // line-height: 1.2em;
+  margin-bottom: 0;
+}
+
+// body {
+//   line-height: 1.5em;
+//   color: $text-color;
+//   @extend .serif;
+// }
+h1 {
+  font-size: 1.8em;
+  line-height: 1.2em;
+}
+
+.pullquote-right:before,
+.pullquote-left:before {
+  /* Baseline correction */
+  position: relative;
+  top: 7px;
+  font-size: 1.1em;
+  line-height: 1.15em;
+}
