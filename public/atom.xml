@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[A Creative Technologist]]></title>
-  <link href="http://willprater.me/atom.xml" rel="self"/>
-  <link href="http://willprater.me/"/>
-  <updated>2012-08-21T12:19:35+02:00</updated>
-  <id>http://willprater.me/</id>
+  <link href="http://wprater.github.com/atom.xml" rel="self"/>
+  <link href="http://wprater.github.com/"/>
+  <updated>2012-08-21T12:35:23+02:00</updated>
+  <id>http://wprater.github.com/</id>
   <author>
     <name><![CDATA[Will Prater]]></name>
     
