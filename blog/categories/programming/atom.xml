@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | A Creative Technologist]]></title>
   <link href="http://wprater.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://wprater.github.com/"/>
-  <updated>2012-08-23T00:05:14+02:00</updated>
+  <updated>2012-08-23T01:12:04+02:00</updated>
   <id>http://wprater.github.com/</id>
   <author>
     <name><![CDATA[Will Prater]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Using RubyMotion to Build JavaScript Based iOS Apps]]></title>
-    <link href="http://wprater.github.com/blog/2012/08/21/building-cordova-apps-and-plugins-with-rubymotion/"/>
+    <link href="http://wprater.github.com/blog/2012/08/21/using-rubymotion-to-build-javaScript-based-ios-apps/"/>
     <updated>2012-08-21T13:09:00+02:00</updated>
-    <id>http://wprater.github.com/blog/2012/08/21/building-cordova-apps-and-plugins-with-rubymotion</id>
+    <id>http://wprater.github.com/blog/2012/08/21/using-rubymotion-to-build-javaScript-based-ios-apps</id>
     <content type="html"><![CDATA[<p><img class="right" src="http://f.cl.ly/items/1N1M0h1B3h1P0b1X0B2r/Sencha%20logo.png" width="85">
 <img class="right" src="http://f.cl.ly/items/3P3L2c0B202C3O3W250Q/cordova_bot.png" width="85">
 <img class="right" src="http://drop.superformula.com/image/3F2617151N32/rubymotion_icon.png" width="85">
