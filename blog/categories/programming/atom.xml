@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | A Creative Technologist]]></title>
   <link href="http://wprater.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://wprater.github.com/"/>
-  <updated>2012-08-21T12:57:17+02:00</updated>
+  <updated>2012-08-22T23:59:10+02:00</updated>
   <id>http://wprater.github.com/</id>
   <author>
     <name><![CDATA[Will Prater]]></name>
@@ -14,11 +14,245 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Using RubyMotion to Build JavaScript Based iOS Apps]]></title>
+    <link href="http://wprater.github.com/blog/2012/08/21/building-cordova-apps-and-plugins-with-rubymotion/"/>
+    <updated>2012-08-21T13:09:00+02:00</updated>
+    <id>http://wprater.github.com/blog/2012/08/21/building-cordova-apps-and-plugins-with-rubymotion</id>
+    <content type="html"><![CDATA[<p><img class="right" src="http://f.cl.ly/items/1N1M0h1B3h1P0b1X0B2r/Sencha%20logo.png" width="85">
+<img class="right" src="http://f.cl.ly/items/3P3L2c0B202C3O3W250Q/cordova_bot.png" width="85">
+<img class="right" src="http://drop.superformula.com/image/3F2617151N32/rubymotion_icon.png" width="85">
+That's right, JavaScript and RubyMotion can play nice together.  And since you're here, you must: love hacking, love Ruby, love iOS, love JavaScript, and love RubyMotion (and/or Laurent for making Ruby to iOS a reality), as none of this would have been possible without any of them (if you could personify the first three, that is)!  What you're about to read is my mash-up of an adventure for teetering on the cutting edge of technology, staying creative, having fun, and the love for code.  So all you JavaScript hackers, grab a rubyist and rejoice 'No more Xcode' (if you're into that sort of thing ;)!</p>
+
+<p>I'll be using both <a href="http://incubator.apache.org/cordova/">Cordova (PhoneGap)</a> and <a href="http://www.sencha.com/products/touch/">Sencha Touch 2</a> in my examples.  You don't necessarily need to use the aforementioned frameworks, as you could just use JavaScript to write your app and create your own <a href="http://stackoverflow.com/a/9473941/484792">Cocoa bridge</a> to interact with an app built with RubyMotion, but this is beyond the scope of this article.</p>
+
+<p><span class='pullquote-right' data-pullquote='It&#8217;s worth mentioning this article will be especially of interest to one that needs to write a custom iOS Plugin for Cordova or add a native UI/feature not available in Sencha Touch.'>
+It's worth mentioning this article will be especially of interest to one that needs to write a custom iOS Plugin for Cordova or add a native UI/feature not available in Sencha Touch. Sencha Touch is using NimbleKit (at least /usr/bin/strings thinks so) for it's native SDK bridge and components, there is no (published) interface for one to write a plugin/extension for it.  Which is why I'm using Cordova; allowing for plugin extensions.  Cordova and PhoneGap are effectively the same thing at the moment.  PhoneGap is run by Adobe and will soon be offering other commercial offerings to enhance PhoneGap, while Cordova is managed by the Apache Foundation and should remain the core the PhoneGap offering.
+</span></p>
+
+<h2>Creating a new iOS App</h2>
+
+<p>There are several options at your disposal:</p>
+
+<ol>
+<li>The Apple <a href="https://developer.apple.com/devcenter/ios/checklist/">recommended way</a> with Xcode and <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjectiveC/Introduction/introObjectiveC.html">Objective-C</a> (which is <a href="http://stackoverflow.com/a/9349981/484792">getting</a> <a href="http://clang.llvm.org/docs/ObjectiveCLiterals.html">better</a>);</li>
+<li>write a web app <a href="http://www.sencha.com/products/touch/">using</a> <a href="http://jquerymobile.com">JavaScript</a> and run it directly in Mobile Safari;</li>
+<li>wrap a web app in a <a href="http://docs.sencha.com/touch/2-0/#!/guide/native_packaging">native</a> <a href="http://incubator.apache.org/cordova/">shell</a>, or</li>
+<li>or use a toolchain that will cross compile to Obj-C byte code like <a href="http://www.rubymotion.com">RubyMotion</a> or <a href="http://xamarin.com/monotouch/">MonoTouch</a>.</li>
+</ol>
+
+
+<p>As much as I appreciate Objective-C, Apple's <a href="http://clang.llvm.org/docs/LanguageExtensions.html#blocks">extensions</a> <a href="http://clang.llvm.org/docs/LanguageExtensions.html#objc_arc">to</a> <a href="http://clang.llvm.org/docs/LanguageExtensions.html#objc_object_literals_subscripting">it</a>, and what it's done for the mobile space, I simply have more fun writing in JavaScript and Ruby (I'd prefer to just write in JavaSript, but I'll save that for another post).  In this article, I'll describe how I'm using a hybrid of both #3 and #4 to build my product.</p>
+
+<p><a href="http://www.hipbyte.com">Laurent Sansonetti</a> has created an amazing toolchain to build iOS apps and since my next project will be running on multiple devices, sadly I won't be using it exclusively.  In my opinion, RubyMotion has the best build tool available for iOS when compared to Xcode and Sencha Touch (the two I've previously used) and as a bonus, the <a href="https://github.com/HipByte/RubyMotion">RubyMotion build process (lib directory)</a> has been <a href="http://blog.rubymotion.com/post/24197887535/community-open-source-updates">open-sourced</a>!</p>
+
+<h2>Slow Pace of JavaScript Apps on Mobile</h2>
+
+<p>Many apps exclusively built using JavaScript will need to leverage native device capabilities such as the Network Status, GPS, Camera, Orientation, Accelerometer, Calendar, and Contacts.  There is a <a href="http://www.w3.org/2009/dap/">working group</a> defining these <a href="http://www.w3.org/2009/dap/">device APIs</a>, but even then the [mobile] browsers may not implement them, so one must resort to a toolchain or wrapper that can utilize the native SDKs for each platform.  Unfortunately, we're several years away from such manufacturer adoption, assuming the working groups and associated parties can get along ;).</p>
+
+<p>In order to work around the slow pace (and capitalist economics) of major device manufacturers and software producers, I'll be using a combination of my favorite mobile JavaScript frameworks and iOS publishing toolset in this article: <a href="http://incubator.apache.org/cordova/">Cordova</a>, <a href="http://www.sencha.com/products/touch/">Sencha Touch</a>, and <a href="http://www.rubymotion.com">RubyMotion</a>.</p>
+
+<h2>Building JavaScript (Cordova/Sencha Touch) Apps with RubyMotion</h2>
+
+<p><span class='pullquote-right' data-pullquote='Both Cordova and Sencha Touch support multiple platforms (iOS, Android, Windows Mobile, etc.), but we&#8217;re going to focus on iOS in this article.'>
+It could be argued that you could use just one framework, either Cordvoa or Sencha Touch to build the iOS app, as they both have build tools (or a build process) and native Cocoa SDKs.  Both Cordova and Sencha Touch support multiple platforms (iOS, Android, Windows Mobile, etc.), but we're going to focus on iOS in this article.
+</span></p>
+
+<p>It's assumed that you've already setup a RubyMotion app, understand or have used Cordova, and are familiar with Sencha Touch.  I won't be speaking to how each of these products can work together or their corresponding setups.</p>
+
+<h3>Project Setup</h3>
+
+<p>RubyMotion can be setup to <a href="http://www.rubymotion.com/developer-center/guides/project-management/#_using_3rd_party_libraries">link to third-party libraries</a>, which is needed to build a Cordova app with RubyMotion.  Below is a example Rakefile for your RubyMotion project.</p>
+
+<p><div><script src='https://gist.github.com/3425963.js?file='></script>
+<noscript><pre><code>$:.unshift(&quot;/Library/RubyMotion/lib&quot;)
+require 'motion/project'
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'HandRaisers'
+  app.version = '1.0'
+
+  app.files = Dir.glob('./app/ios/**/*.rb')
+
+  # app.device_family = [:iphone, :ipad]
+  app.device_family = :ipad
+
+  app.vendor_project('vendor/CordovaLib',
+                     :xcode,
+                     :headers_dir =&gt; 'Classes'
+                     )
+
+  # All the frameworks needed for the Cordova Framework APIs
+  # You'll need to include all the frameworks that are references in the Xcode project
+  # in the Cordova lib dir
+  app.frameworks += %w[
+    AddressBook
+    AddressBookUI
+    AudioToolbox
+    AVFoundation
+    CoreLocation
+    CoreMedia
+    MobileCoreServices
+    SystemConfiguration
+  ]
+
+end
+</code></pre></noscript></div>
+</p>
+
+<h3>Directory Structure</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th style="width: 155px">
+            File/Directory
+        </th>
+        <th>
+            Purpose
+        </th>
+    </tr>
+    </thead>
+    <tr>
+        <td>
+            Rakefile
+        </td>
+        <td>
+            This file contains the configuration of the project, as well as a default set of tasks. It can be edited to change the RubyMotion configuration or add new build tasks.
+        </td>
+    </tr>
+     <tr>
+        <td>
+            app/
+        </td>
+        <td>
+            This directory contains the code of the project.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            resources/
+        </td>
+        <td>
+            This directory contains the resources that will automatically be included in the RubyMotion iOS project.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            resources/www/
+        </td>
+        <td>
+            This directory will be used by Sencha Touch to host the app code and styles.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            vendor/
+        </td>
+        <td>
+            This directory contains the vendor libraries used in the project.  These can be both Ruby and JavaScript.
+        </td>
+    </tr>
+</table>
+
+
+<p>This app structure was borrowed from RubyMotion but modified to my liking to allow me to build for multiple platforms and technologies for my products.  I've separated the <code>app/</code> directory by scope, ie: ios, android, and webview, and rely on the Rakefile to do all the building for CoffeeScript, Sass, Ruby, and other platforms and plugin builds.  The <code>vendor/</code> directory has <em>CordovaLib</em> copied from <code>~/Documents/CordovaLib</code> and the Sencha Touch SDK.</p>
+
+<h3>App Setup</h3>
+
+<p>All Cordova wants is some JavaScript buddies to talk to.  It's just waiting for API calls!  Sencha Touch already has adapters for it's Device API calls, and will detect through <code>Ext.browser.is</code>whether you're in the simulator, Cordova (PhoneGap), or Sencha.  You could override some of these adapters (or create your own) and hook them into your custom Cordova plugins.  You'll be writing your own interfaces for the Cordova plugins which will effectively be calling the RubyMotion ruby classes.</p>
+
+<p>Here are two boilerplate classes that are needed for a base Cordova project.  Take note of <em>main_view_controller.rb</em> as it's the one inheriting <em>CDVViewController</em> which acts as the bridge to receive all the JavaScript callbacks, setup plugins, whitelists, etc. from the webview (Sencha in my case).  Take a look at <em>CDVViewController.m</em> to learn more and hack away in <em>main_view_controller.rb</em> at your desire!</p>
+
+<p><div><script src='https://gist.github.com/3429508.js?file='></script>
+<noscript><pre><code>class AppDelegate
+
+  def init
+    # If you need to do any extra app-specific initialization, you can do it here
+    # -jm
+    cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage
+    cookieStorage.cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways
+
+    CDVURLProtocol.registerURLProtocol
+
+    super
+  end
+
+  def application(application, didFinishLaunchingWithOptions:launchOptions)
+    url = launchOptions[UIApplicationLaunchOptionsURLKey] if launchOptions
+
+    invokeString = url.absoluteString if url and url.isKindOfClass(NSURL.class)
+
+    screenBounds = UIScreen.mainScreen.bounds
+    @window = UIWindow.alloc.initWithFrame(screenBounds)
+    @window.autoresizesSubviews = true
+
+    viewBounds = UIScreen.mainScreen.applicationFrame
+
+    @viewController = MainViewController.new
+    @viewController.useSplashScreen = true
+    @viewController.wwwFolderName = &quot;www&quot;
+    @viewController.startPage = &quot;index.html&quot;
+    @viewController.invokeString = invokeString
+    @viewController.view.frame = viewBounds
+
+    # check whether the current orientation is supported: if it is, keep it,
+    # rather than forcing a rotation
+    forceStartupRotation = true
+    curDevOrientation = UIDevice.currentDevice.orientation
+
+    if UIDeviceOrientationUnknown == curDevOrientation
+      # UIDevice isn't firing orientation notifications yet... go look at the status bar
+      curDevOrientation = UIApplication.sharedApplication.statusBarOrientation
+    end
+
+    # Make sure curDevOrientation is valid
+    # Work around for the UIDeviceOrientationIsValidInterfaceOrientation macro
+    # since callable preprocessor macros are not supported by RubyMotion
+    if [UIDeviceOrientationPortrait,
+        UIDeviceOrientationPortraitUpsideDown,
+        UIDeviceOrientationLandscapeLeft,
+        UIDeviceOrientationLandscapeRight].any? { |x| x == curDevOrientation }
+      for orient in @viewController.supportedOrientations
+        if orient == curDevOrientation
+          forceStartupRotation = false
+          break
+        end
+      end
+    end
+
+    if forceStartupRotation
+      NSLog(&quot;supportedOrientations: %@&quot;, @viewController.supportedOrientations)
+      # The first item in the supportedOrientations array is the start orientation (guaranteed to be at least Portrait)
+      newOrient = @viewController.supportedOrientations[0]
+      NSLog(&quot;AppDelegate forcing status bar to: %d from: %d&quot;, newOrient, curDevOrientation);
+      UIApplication.sharedApplication.statusBarOrientation = newOrient
+    end
+
+    @window.addSubview(@viewController.view)
+    @window.makeKeyAndVisible
+
+    true
+  end
+
+end
+</code></pre></noscript></div>
+</p>
+
+<p>You can alter the <code>@viewController.wwwFolderName</code> and <code>@viewController.startPage</code> properties to point to your app startpoint.  The defaults are <em>www</em> and <em>index.html</em> respectively, which are relative to the <code>resources/</code> directory.</p>
+
+<p>Assuming you have your app setup, you can run <code>rake</code> which should build with RubyMotion and launch your app.</p>
+
+<p>I'll write a few more articles in the adventures JavaScript and mobile as I move along in my projects.  Let me know what you think!</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[RubyMotion Linting and Highlighting with Sublime Text]]></title>
     <link href="http://wprater.github.com/blog/2012/07/24/rubymotion-linting-and-highlighting-with-sublime-text/"/>
     <updated>2012-07-24T12:44:00+02:00</updated>
     <id>http://wprater.github.com/blog/2012/07/24/rubymotion-linting-and-highlighting-with-sublime-text</id>
-    <content type="html"><![CDATA[<p>Looking to build a new iOS project with <a href="http://www.rubymotion.com">RubyMotion</a> and you're a fan of <a href="http://www.sublimetext.com">Sublime Text</a> too?  Here are a few tips to get syntax highlighting, linting, and snippets running smoothly on your machine. <!--more-->  There is a great RubyMotion <a href="https://github.com/haraken3/SublimeRubyMotionBuilder">bundle</a> by <a href="https://twitter.com/haraken3">Kentaro Hara</a> already available, which you can use to get Cocoa SDK syntax highlighting, code completion, and some lovely snippets!  The syntax highlighting in this bundle is different than the normal Ruby bundle, which I find odd.</p>
+    <content type="html"><![CDATA[<p>Looking to build a new iOS project with <a href="http://www.rubymotion.com">RubyMotion</a> and you're a fan of <a href="http://www.sublimetext.com">Sublime Text</a> too?  Here are a few tips to get syntax highlighting, linting, and snippets running smoothly on your machine. <!--more-->  There is a great RubyMotion <a href="https://github.com/haraken3/SublimeRubyMotionBuilder">bundle</a> by <a href="https://twitter.com/haraken3">Kentaro Hara</a> already available, which you can use to get the Cocoa SDK syntax highlighting, code completion, and some lovely snippets!  The syntax highlighting in this bundle is different than the normal Ruby bundle, which I find odd.</p>
 
 <p><span class='pullquote-right' data-pullquote='The syntax used to define Objective-C selectors was added to RubyMotion and is not part of the Ruby standard.'>
 I'm a fan of real time linting and since the usual linting provided by <code>ruby -wc</code> won't work here because of the extensions to the Ruby language (Ruby 2.0 should have named parameter support) <a href="http://www.hipbyte.com">Laurent Sansonetti</a> has made. The syntax used to define Objective-C selectors was added to RubyMotion and is not part of the Ruby standard. You'll need to link the linter output to the custom ruby executable that's available as part of the RubyMotion build.
