@@ -4,7 +4,7 @@
   <title><![CDATA[A Creative Technologist]]></title>
   <link href="http://wprater.github.com/atom.xml" rel="self"/>
   <link href="http://wprater.github.com/"/>
-  <updated>2012-08-22T23:59:10+02:00</updated>
+  <updated>2012-08-23T00:00:13+02:00</updated>
   <id>http://wprater.github.com/</id>
   <author>
     <name><![CDATA[Will Prater]]></name>
@@ -21,9 +21,9 @@
     <content type="html"><![CDATA[<p><img class="right" src="http://f.cl.ly/items/1N1M0h1B3h1P0b1X0B2r/Sencha%20logo.png" width="85">
 <img class="right" src="http://f.cl.ly/items/3P3L2c0B202C3O3W250Q/cordova_bot.png" width="85">
 <img class="right" src="http://drop.superformula.com/image/3F2617151N32/rubymotion_icon.png" width="85">
-That&#8217;s right, JavaScript and RubyMotion can play nice together.  And since you&#8217;re here, you must: love hacking, love Ruby, love iOS, love JavaScript, and love RubyMotion (and/or Laurent for making Ruby to iOS a reality), as none of this would have been possible without any of them (if you could personify the first three, that is)!  What you&#8217;re about to read is my mash-up of an adventure for teetering on the cutting edge of technology, staying creative, having fun, and the love for code.  So all you JavaScript hackers, grab a rubyist and rejoice &#8216;No more Xcode&#8217; (if you&#8217;re into that sort of thing ;)!</p>
-
-<p>I&#8217;ll be using both <a href="http://incubator.apache.org/cordova/">Cordova (PhoneGap)</a> and <a href="http://www.sencha.com/products/touch/">Sencha Touch 2</a> in my examples.  You don&#8217;t necessarily need to use the aforementioned frameworks, as you could just use JavaScript to write your app and create your own <a href="http://stackoverflow.com/a/9473941/484792">Cocoa bridge</a> to interact with an app built with RubyMotion, but this is beyond the scope of this article.</p>
+That&#8217;s right, JavaScript and RubyMotion can play nice together.  And since you&#8217;re here, you must: love hacking, love Ruby, love iOS, love JavaScript, and love RubyMotion (and/or Laurent for making Ruby to iOS a reality), as none of this would have been possible without any of them (if you could personify the first three, that is)!  What you&#8217;re about to read is my mash-up of an adventure for teetering on the cutting edge of technology, staying creative, having fun, and the love for code.  So all you JavaScript hackers, grab a rubyist and rejoice &#8216;No more Xcode&#8217; (if you&#8217;re into that sort of thing ;)!
+ <!--more-->
+I&#8217;ll be using both <a href="http://incubator.apache.org/cordova/">Cordova (PhoneGap)</a> and <a href="http://www.sencha.com/products/touch/">Sencha Touch 2</a> in my examples.  You don&#8217;t necessarily need to use the aforementioned frameworks, as you could just use JavaScript to write your app and create your own <a href="http://stackoverflow.com/a/9473941/484792">Cocoa bridge</a> to interact with an app built with RubyMotion, but this is beyond the scope of this article.</p>
 
 <p><span class='pullquote-right' data-pullquote='It&#8217;s worth mentioning this article will be especially of interest to one that needs to write a custom iOS Plugin for Cordova or add a native UI/feature not available in Sencha Touch.'>
 It&#8217;s worth mentioning this article will be especially of interest to one that needs to write a custom iOS Plugin for Cordova or add a native UI/feature not available in Sencha Touch. Sencha Touch is using NimbleKit (at least /usr/bin/strings thinks so) for it&#8217;s native SDK bridge and components, there is no (published) interface for one to write a plugin/extension for it.  Which is why I&#8217;m using Cordova; allowing for plugin extensions.  Cordova and PhoneGap are effectively the same thing at the moment.  PhoneGap is run by Adobe and will soon be offering other commercial offerings to enhance PhoneGap, while Cordova is managed by the Apache Foundation and should remain the core the PhoneGap offering.
