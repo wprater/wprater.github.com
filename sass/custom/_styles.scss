@@ -26,6 +26,23 @@ h1 {
   line-height: 1.2em;
 }
 
+table {
+  margin-bottom: 1em;
+
+  thead tr {
+    padding-bottom: 20px;
+  }
+  th {
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+  }
+  td {
+    padding: 5px 0;
+    font-size: 0.85em;
+    line-height: 1.5em;
+  }
+}
+
 .pullquote-right:before,
 .pullquote-left:before {
   /* Baseline correction */

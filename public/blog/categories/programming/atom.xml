@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Mobile | A Creative Technologist]]></title>
-  <link href="http://wprater.github.com/blog/categories/mobile/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Programming | A Creative Technologist]]></title>
+  <link href="http://wprater.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://wprater.github.com/"/>
   <updated>2012-08-23T01:12:04+02:00</updated>
   <id>http://wprater.github.com/</id>

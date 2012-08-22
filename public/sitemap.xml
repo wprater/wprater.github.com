@@ -1,11 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>
+            http://wprater.github.com/blog/2012/07/24/rubymotion-linting-and-highlighting-with-sublime-text/
+        </loc>
+        <lastmod>2012-08-21T22:09:03+02:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://wprater.github.com/blog/2012/08/21/using-rubymotion-to-build-javaScript-based-ios-apps/
+        </loc>
+        <lastmod>2012-08-23T01:08:22+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://wprater.github.com/about/</loc>
+        <lastmod>2012-08-22T23:52:25+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://wprater.github.com/blog/archives/</loc>
-        <lastmod>2012-08-21T11:44:15+02:00</lastmod>
+        <lastmod>2012-08-23T01:08:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://wprater.github.com/</loc>
-        <lastmod>2012-08-21T11:44:15+02:00</lastmod>
+        <lastmod>2012-08-23T01:08:22+02:00</lastmod>
     </url>
 </urlset>
