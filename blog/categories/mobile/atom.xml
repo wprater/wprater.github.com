@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mobile | A Creative Technologist]]></title>
   <link href="http://wprater.github.com/blog/categories/mobile/atom.xml" rel="self"/>
   <link href="http://wprater.github.com/"/>
-  <updated>2012-08-23T16:35:02+02:00</updated>
+  <updated>2012-08-28T17:15:56+02:00</updated>
   <id>http://wprater.github.com/</id>
   <author>
     <name><![CDATA[Will Prater]]></name>
@@ -240,6 +240,9 @@ end
 </p>
 
 <p>You can alter the <code>@viewController.wwwFolderName</code> and <code>@viewController.startPage</code> properties to point to your app startpoint.  The defaults are <em>www</em> and <em>index.html</em> respectively, which are relative to the <code>resources/</code> directory.</p>
+
+<p><img class="right" src="http://f.cl.ly/items/032Q370Z3b1r1s1N1Q1y/Image%202012.08.28%205:08:33%20PM.png">
+You need to be sure to also copy <em>VERSION</em> and <em>Cordova.plist</em> from CordovaLib and CordovaLibApp into the resources folder.  If you do not, Cordova will not build properly.  These were in the original Resources Group in a Cordova built Xcode project.</p>
 
 <p>Assuming you have your app setup, you can run <code>rake</code> which should build with RubyMotion and launch your app.</p>
 
