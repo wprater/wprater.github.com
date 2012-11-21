@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | A Creative Technologist]]></title>
   <link href="http://wprater.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://wprater.github.com/"/>
-  <updated>2012-08-31T11:39:08+02:00</updated>
+  <updated>2012-11-20T19:48:14-08:00</updated>
   <id>http://wprater.github.com/</id>
   <author>
     <name><![CDATA[Will Prater]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Using RubyMotion to Build JavaScript Based iOS Apps]]></title>
     <link href="http://wprater.github.com/blog/2012/08/21/using-rubymotion-to-build-javaScript-based-ios-apps/"/>
-    <updated>2012-08-21T13:09:00+02:00</updated>
+    <updated>2012-08-21T13:09:00-07:00</updated>
     <id>http://wprater.github.com/blog/2012/08/21/using-rubymotion-to-build-javaScript-based-ios-apps</id>
     <content type="html"><![CDATA[<p><img class="right" src="http://f.cl.ly/items/1N1M0h1B3h1P0b1X0B2r/Sencha%20logo.png" width="85">
 <img class="right" src="http://f.cl.ly/items/3P3L2c0B202C3O3W250Q/cordova_bot.png" width="85">
@@ -247,13 +247,15 @@ You need to be sure to also copy <em>VERSION</em> and <em>Cordova.plist</em> fro
 <p>Assuming you have your app setup, you can run <code>rake</code> which should build with RubyMotion and launch your app.</p>
 
 <p>I'll write a few more articles in the adventures JavaScript and mobile as I move along in my projects.  Let me know what you think!</p>
+
+<p>There is a Hacker News <a href="http://news.ycombinator.com/item?id=4422200">discussion</a> as well.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[RubyMotion Linting and Highlighting with Sublime Text]]></title>
     <link href="http://wprater.github.com/blog/2012/07/24/rubymotion-linting-and-highlighting-with-sublime-text/"/>
-    <updated>2012-07-24T12:44:00+02:00</updated>
+    <updated>2012-07-24T12:44:00-07:00</updated>
     <id>http://wprater.github.com/blog/2012/07/24/rubymotion-linting-and-highlighting-with-sublime-text</id>
     <content type="html"><![CDATA[<p>Looking to build a new iOS project with <a href="http://www.rubymotion.com">RubyMotion</a> and you're a fan of <a href="http://www.sublimetext.com">Sublime Text</a> too?  Here are a few tips to get syntax highlighting, linting, and snippets running smoothly on your machine. <!--more-->  There is a great RubyMotion <a href="https://github.com/haraken3/SublimeRubyMotionBuilder">bundle</a> by <a href="https://twitter.com/haraken3">Kentaro Hara</a> already available, which you can use to get the Cocoa SDK syntax highlighting, code completion, and some lovely snippets!  The syntax highlighting in this bundle is different than the normal Ruby bundle, which I find odd.</p>
 
